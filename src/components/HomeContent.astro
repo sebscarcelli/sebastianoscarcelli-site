@@ -1,0 +1,18 @@
+---
+import BlueprintLayout from "../layouts/BlueprintLayout.astro";
+import { useTranslations, localizedPath } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<BlueprintLayout title={t.home.title} sheetNumber="01" sheetLabel={t.home.sheetLabel} lang={lang}>
+  <h1>{t.home.title}</h1>
+  <p>{t.home.intro1}</p>
+  <p>{t.home.intro2}</p>
+  <p>
+    <a class="inline-link" href={localizedPath(lang, "/cv")}>{t.home.linkCv}</a><br/>
+    <a class="inline-link" href={localizedPath(lang, "/progetti")}>{t.home.linkProgetti}</a>
+  </p>
+</BlueprintLayout>

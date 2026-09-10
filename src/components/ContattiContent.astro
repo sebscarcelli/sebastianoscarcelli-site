@@ -1,0 +1,45 @@
+---
+import BlueprintLayout from "../layouts/BlueprintLayout.astro";
+import { useTranslations } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<BlueprintLayout title={t.contatti.title} sheetNumber="04" sheetLabel={t.contatti.sheetLabel} lang={lang}>
+  <h1>{t.contatti.title}</h1>
+  <p>{t.contatti.intro}</p>
+
+  <dl class="contact-list">
+    {t.contatti.channels.map((channel) => (
+      <div class="contact-row">
+        <dt>{channel.label}</dt>
+        <dd>
+          {channel.href ? (
+            <a class="inline-link" href={channel.href} target={channel.href.startsWith("http") ? "_blank" : undefined} rel="noopener">{channel.value}</a>
+          ) : (
+            channel.value
+          )}
+        </dd>
+      </div>
+    ))}
+  </dl>
+
+  <a class="cta" href="mailto:info@sebastianoscarcelli.it">{t.contatti.cta}</a>
+
+  <style>
+    .contact-list { margin: 40px 0; border-top: 1px solid var(--line); }
+    .contact-row { display: grid; grid-template-columns: 140px 1fr; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .contact-row dt { font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); }
+    .contact-row dd { margin: 0; font-size: 1rem; color: var(--paper); }
+    .cta {
+      display: inline-block; margin-top: 8px; padding: 12px 22px;
+      border: 1px solid var(--signal); color: var(--signal); text-decoration: none;
+      font-size: 0.95rem; letter-spacing: 0.03em;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .cta:hover { background: var(--signal); color: var(--blueprint); }
+    @media (max-width: 480px) { .contact-row { grid-template-columns: 1fr; gap: 4px; } }
+  </style>
+</BlueprintLayout>

@@ -1,0 +1,47 @@
+---
+import BlueprintLayout from "../layouts/BlueprintLayout.astro";
+import { useTranslations } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<BlueprintLayout title={t.progetti.title} sheetNumber="03" sheetLabel={t.progetti.sheetLabel} lang={lang}>
+  <h1>{t.progetti.title}</h1>
+  <p>{t.progetti.intro}</p>
+
+  <div class="project-grid">
+    {t.progetti.items.map((project) => (
+      <article class="project-card">
+        <div class="project-photo" aria-hidden="true"><span>FOTO</span></div>
+        <div class="project-body">
+          <div class="project-tags">
+            {project.tags.map((tag) => <span class="tag">{tag}</span>)}
+          </div>
+          <h3>{project.title}</h3>
+          <p>{project.summary}</p>
+          <p class="project-status">{t.progetti.statusLabel}: {project.status}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <style>
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; margin-top: 40px; }
+    .project-card { border: 1px solid var(--line-strong); display: flex; flex-direction: column; }
+    .project-photo {
+      aspect-ratio: 4 / 3;
+      background: repeating-linear-gradient(45deg, var(--line) 0, var(--line) 1px, transparent 1px, transparent 10px);
+      border-bottom: 1px solid var(--line-strong);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .project-photo span { font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace; font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+    .project-body { padding: 16px 18px 20px; }
+    .project-tags { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+    .tag { font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--signal); border: 1px solid var(--line-strong); padding: 2px 6px; }
+    .project-body h3 { margin: 0 0 8px; font-size: 1.1rem; color: var(--paper); }
+    .project-body p { font-size: 0.92rem; margin: 0 0 10px; }
+    .project-status { font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace; font-size: 11px; color: var(--muted); opacity: 1; }
+  </style>
+</BlueprintLayout>

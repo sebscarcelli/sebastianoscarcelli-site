@@ -1,0 +1,178 @@
+export const languages = { it: 'IT', en: 'EN', fr: 'FR' } as const;
+export const defaultLang = 'it';
+
+export const ui = {
+  it: {
+    nav: { home: 'HOME', cv: 'CV', progetti: 'PROGETTI', contatti: 'CONTATTI' },
+    sheetWord: 'FOGLIO',
+    home: {
+      sheetLabel: 'SITO PERSONALE',
+      title: 'Sebastiano Scarcelli',
+      intro1: 'Tecnico esperto in sistemi di visione industriale e automazione. Mi occupo di installazione, retrofit e validazione su linee di produzione farmaceutiche — dalla meccanica al cablaggio, dalla programmazione al collaudo FAT/SAT.',
+      intro2: 'Fuori dal lavoro, costruisco e gestisco la mia infrastruttura personale: un cluster Proxmox/ZFS che uso per imparare, sperimentare e tenere in piedi progetti come questo stesso sito.',
+      linkCv: '→ Percorso e competenze',
+      linkProgetti: '→ Progetti e realizzazioni',
+    },
+    cv: {
+      sheetLabel: 'PERCORSO E COMPETENZE',
+      title: 'Percorso professionale',
+      expTitle: 'Esperienza',
+      role: 'Tecnico esperto — SEA Vision',
+      roleDate: '(dal gennaio 2025)',
+      expItems: [
+        'Installazione di sistemi di visione su nuove linee farmaceutiche',
+        'Retrofit completi: meccanica, cablaggio, programmazione, coordinamento equipe tecnica cliente',
+        'Validazione FAT/SAT',
+        'Programmazione di stampanti e marcatori laser industriali',
+        'Assistenza post-vendita',
+      ],
+      skillsTitle: 'Competenze tecniche',
+      skillsItems: [
+        'Sistemi di visione industriale e automazione di linea',
+        'Elettronica e cablaggio industriale',
+        'Virtualizzazione e infrastrutture self-hosted (Proxmox, ZFS)',
+        'Reti, DNS, sicurezza di base',
+      ],
+      eduTitle: 'Formazione',
+      eduItem: 'Diploma in Elettronica e Telecomunicazioni',
+    },
+    progetti: {
+      sheetLabel: 'PROGETTI E REALIZZAZIONI',
+      title: 'Progetti',
+      intro: 'Approfondimenti tecnici su alcune delle cose che costruisco e mantengo, dentro e fuori dal lavoro.',
+      statusLabel: 'STATO',
+      items: [
+        { title: 'Cluster HomeLab Proxmox', tags: ['Infrastruttura', 'Virtualizzazione'], summary: 'Cluster Proxmox VE a 3 nodi su HP ProLiant MicroServer Gen8, storage ZFS con SSD enterprise, rete 10GbE. Gestione di macchine virtuali per servizi domestici e sperimentazione.', status: 'In corso' },
+        { title: 'Retrofit linee di visione industriale', tags: ['Automazione', 'Elettronica'], summary: 'Descrizione da completare — dettagli sui retrofit realizzati in ambito lavorativo, nel rispetto della riservatezza verso i clienti.', status: 'Da scrivere' },
+        { title: 'Prossimo progetto', tags: ['—'], summary: 'Spazio riservato per la prossima realizzazione da documentare.', status: 'Pianificato' },
+      ],
+    },
+    contatti: {
+      sheetLabel: 'CONTATTI',
+      title: 'Contatti',
+      intro: 'Per colloqui, collaborazioni o semplicemente per scambiare due parole su automazione, elettronica o infrastrutture — scrivimi.',
+      channels: [
+        { label: 'EMAIL', value: 'info@sebastianoscarcelli.it', href: 'mailto:info@sebastianoscarcelli.it' },
+        { label: 'GITHUB', value: 'github.com/sebscarcelli', href: 'https://github.com/sebscarcelli' },
+        { label: 'LOCALITÀ', value: 'Île-de-France, Francia' },
+      ],
+      cta: 'Scrivimi una mail →',
+    },
+  },
+  en: {
+    nav: { home: 'HOME', cv: 'CV', progetti: 'PROJECTS', contatti: 'CONTACT' },
+    sheetWord: 'SHEET',
+    home: {
+      sheetLabel: 'PERSONAL SITE',
+      title: 'Sebastiano Scarcelli',
+      intro1: 'Industrial vision systems and automation technician. I handle installation, retrofit and validation on pharmaceutical production lines — from mechanics to wiring, from programming to FAT/SAT testing.',
+      intro2: 'Outside of work, I build and run my own infrastructure: a Proxmox/ZFS cluster I use to learn, experiment, and keep projects like this site running.',
+      linkCv: '→ Background and skills',
+      linkProgetti: '→ Projects and work',
+    },
+    cv: {
+      sheetLabel: 'BACKGROUND AND SKILLS',
+      title: 'Professional background',
+      expTitle: 'Experience',
+      role: 'Expert Technician — SEA Vision',
+      roleDate: '(since January 2025)',
+      expItems: [
+        'Installation of vision systems on new pharmaceutical production lines',
+        "Full retrofits: mechanics, wiring, programming, coordination with the client's technical team",
+        'FAT/SAT validation',
+        'Programming of industrial printers and laser markers',
+        'After-sales support',
+      ],
+      skillsTitle: 'Technical skills',
+      skillsItems: [
+        'Industrial vision systems and line automation',
+        'Industrial electronics and wiring',
+        'Virtualization and self-hosted infrastructure (Proxmox, ZFS)',
+        'Networking, DNS, basic security',
+      ],
+      eduTitle: 'Education',
+      eduItem: 'Diploma in Electronics and Telecommunications',
+    },
+    progetti: {
+      sheetLabel: 'PROJECTS AND WORK',
+      title: 'Projects',
+      intro: 'Technical deep dives into some of the things I build and maintain, at work and beyond.',
+      statusLabel: 'STATUS',
+      items: [
+        { title: 'HomeLab Proxmox Cluster', tags: ['Infrastructure', 'Virtualization'], summary: '3-node Proxmox VE cluster on HP ProLiant MicroServer Gen8, ZFS storage with enterprise SSDs, 10GbE networking. Running virtual machines for home services and experimentation.', status: 'Ongoing' },
+        { title: 'Industrial vision line retrofits', tags: ['Automation', 'Electronics'], summary: 'Description to be completed — details on retrofits carried out at work, respecting client confidentiality.', status: 'To write' },
+        { title: 'Next project', tags: ['—'], summary: 'Reserved space for the next project to document.', status: 'Planned' },
+      ],
+    },
+    contatti: {
+      sheetLabel: 'CONTACT',
+      title: 'Contact',
+      intro: 'For interviews, collaborations, or just to talk about automation, electronics or infrastructure — get in touch.',
+      channels: [
+        { label: 'EMAIL', value: 'info@sebastianoscarcelli.it', href: 'mailto:info@sebastianoscarcelli.it' },
+        { label: 'GITHUB', value: 'github.com/sebscarcelli', href: 'https://github.com/sebscarcelli' },
+        { label: 'LOCATION', value: 'Île-de-France, France' },
+      ],
+      cta: 'Send me an email →',
+    },
+  },
+  fr: {
+    nav: { home: 'ACCUEIL', cv: 'CV', progetti: 'PROJETS', contatti: 'CONTACT' },
+    sheetWord: 'FEUILLE',
+    home: {
+      sheetLabel: 'SITE PERSONNEL',
+      title: 'Sebastiano Scarcelli',
+      intro1: "Technicien expert en systèmes de vision industrielle et automatisation. Je m'occupe de l'installation, du rétrofit et de la validation sur des lignes de production pharmaceutique — de la mécanique au câblage, de la programmation aux essais FAT/SAT.",
+      intro2: "En dehors du travail, je construis et gère ma propre infrastructure : un cluster Proxmox/ZFS que j'utilise pour apprendre, expérimenter et faire tourner des projets comme ce site.",
+      linkCv: '→ Parcours et compétences',
+      linkProgetti: '→ Projets et réalisations',
+    },
+    cv: {
+      sheetLabel: 'PARCOURS ET COMPÉTENCES',
+      title: 'Parcours professionnel',
+      expTitle: 'Expérience',
+      role: 'Technicien expert — SEA Vision',
+      roleDate: '(depuis janvier 2025)',
+      expItems: [
+        'Installation de systèmes de vision sur de nouvelles lignes pharmaceutiques',
+        "Rétrofits complets : mécanique, câblage, programmation, coordination avec l'équipe technique du client",
+        'Validation FAT/SAT',
+        "Programmation d'imprimantes et marqueurs laser industriels",
+        'Support après-vente',
+      ],
+      skillsTitle: 'Compétences techniques',
+      skillsItems: [
+        'Systèmes de vision industrielle et automatisation de ligne',
+        'Électronique et câblage industriel',
+        'Virtualisation et infrastructures auto-hébergées (Proxmox, ZFS)',
+        'Réseaux, DNS, sécurité de base',
+      ],
+      eduTitle: 'Formation',
+      eduItem: 'Diplôme en Électronique et Télécommunications',
+    },
+    progetti: {
+      sheetLabel: 'PROJETS ET RÉALISATIONS',
+      title: 'Projets',
+      intro: 'Approfondissements techniques sur certaines réalisations que je construis et maintiens, au travail et en dehors.',
+      statusLabel: 'STATUT',
+      items: [
+        { title: 'Cluster HomeLab Proxmox', tags: ['Infrastructure', 'Virtualisation'], summary: 'Cluster Proxmox VE à 3 nœuds sur HP ProLiant MicroServer Gen8, stockage ZFS avec SSD professionnels, réseau 10GbE. Gestion de machines virtuelles pour services domestiques et expérimentation.', status: 'En cours' },
+        { title: 'Rétrofit de lignes de vision industrielle', tags: ['Automatisation', 'Électronique'], summary: 'Description à compléter — détails sur les rétrofits réalisés dans le cadre professionnel, dans le respect de la confidentialité envers les clients.', status: 'À rédiger' },
+        { title: 'Prochain projet', tags: ['—'], summary: 'Espace réservé pour la prochaine réalisation à documenter.', status: 'Prévu' },
+      ],
+    },
+    contatti: {
+      sheetLabel: 'CONTACT',
+      title: 'Contact',
+      intro: "Pour un entretien, une collaboration, ou simplement pour échanger sur l'automatisation, l'électronique ou l'infrastructure — écrivez-moi.",
+      channels: [
+        { label: 'EMAIL', value: 'info@sebastianoscarcelli.it', href: 'mailto:info@sebastianoscarcelli.it' },
+        { label: 'GITHUB', value: 'github.com/sebscarcelli', href: 'https://github.com/sebscarcelli' },
+        { label: 'LIEU', value: 'Île-de-France, France' },
+      ],
+      cta: "M'envoyer un email →",
+    },
+  },
+} as const;
+
+export type Lang = keyof typeof ui;

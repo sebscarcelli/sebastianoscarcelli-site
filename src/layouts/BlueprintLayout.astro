@@ -1,0 +1,141 @@
+---
+import { useTranslations, localizedPath } from "../i18n/utils";
+import { languages, type Lang } from "../i18n/ui";
+
+interface Props {
+  title: string;
+  sheetNumber: string;
+  sheetLabel: string;
+  lang: Lang;
+}
+const { title, sheetNumber, sheetLabel, lang } = Astro.props;
+const t = useTranslations(lang);
+const currentPath = Astro.url.pathname;
+const basePath = currentPath.replace(/^\/(en|fr)/, "") || "/";
+
+const navItems = [
+  { href: "/", key: "home" },
+  { href: "/cv", key: "cv" },
+  { href: "/progetti", key: "progetti" },
+  { href: "/contatti", key: "contatti" },
+] as const;
+
+const stampLabels = {
+  it: { name: "NOME", contact: "CONTATTO", rev: "REV." },
+  en: { name: "NAME", contact: "CONTACT", rev: "REV." },
+  fr: { name: "NOM", contact: "CONTACT", rev: "RÉV." },
+} as const;
+const stamp = stampLabels[lang];
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} — Sebastiano Scarcelli</title>
+  <style is:global>
+    :root {
+      --blueprint: #1c3f5f;
+      --line: rgba(210, 230, 245, 0.28);
+      --line-strong: rgba(210, 230, 245, 0.55);
+      --paper: #eef4f8;
+      --muted: #7fa2bf;
+      --signal: #e8a33d;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--blueprint);
+      color: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+    body {
+      background-image:
+        repeating-linear-gradient(0deg, var(--line) 0, var(--line) 1px, transparent 1px, transparent 32px),
+        repeating-linear-gradient(90deg, var(--line) 0, var(--line) 1px, transparent 1px, transparent 32px);
+      background-position: center;
+    }
+    .sheet { position: relative; min-height: 100vh; padding: 18px; }
+    .sheet::before {
+      content: ""; position: absolute; inset: 18px;
+      border: 1.5px solid var(--line-strong); pointer-events: none;
+    }
+    .sheet::after {
+      content: ""; position: absolute; inset: 24px;
+      border: 1px solid var(--line); pointer-events: none;
+    }
+    .tabs {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 40px 72px 0;
+      flex-wrap: wrap;
+    }
+    .tab {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0 18px;
+      border-left: 1px solid var(--line);
+    }
+    .tab:first-child { border-left: none; padding-left: 0; }
+    .tab:hover { color: var(--paper); }
+    .tab.active { color: var(--signal); }
+
+    .lang-switch { margin-left: auto; display: flex; }
+
+    main { position: relative; padding: 40px 72px 120px; max-width: 760px; }
+    .index-label { font-size: 13px; letter-spacing: 0.14em; color: var(--muted); margin: 0 0 28px; }
+    h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 20px; font-weight: 600; }
+    h2 { font-size: 1.3rem; margin: 48px 0 16px; font-weight: 600; color: var(--paper); }
+    p, li { font-size: 1.02rem; line-height: 1.6; color: var(--paper); opacity: 0.88; max-width: 62ch; }
+    ul { padding-left: 20px; margin: 0 0 12px; }
+    a.inline-link { color: var(--signal); }
+
+    .stamp {
+      position: absolute; right: 42px; bottom: 42px; width: 280px;
+      border: 1px solid var(--line-strong);
+      font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+      font-size: 12px;
+    }
+    .stamp .row { display: grid; grid-template-columns: 92px 1fr; border-top: 1px solid var(--line); }
+    .stamp .row:first-child { border-top: none; }
+    .stamp .label, .stamp .value { padding: 8px 10px; }
+    .stamp .label { color: var(--muted); border-right: 1px solid var(--line); letter-spacing: 0.06em; }
+    .stamp .value { color: var(--paper); }
+
+    @media (max-width: 720px) {
+      .tabs { padding: 28px 24px 0; }
+      .lang-switch { margin-left: 0; width: 100%; border-top: 1px solid var(--line); margin-top: 12px; padding-top: 12px; }
+      main { padding: 32px 24px 220px; }
+      .stamp { position: static; margin: 48px 24px 24px; width: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <nav class="tabs">
+      {navItems.map((item) => (
+        <a href={localizedPath(lang, item.href)} class={`tab ${basePath === item.href ? "active" : ""}`}>{t.nav[item.key]}</a>
+      ))}
+      <span class="lang-switch">
+        {Object.keys(languages).map((code) => (
+          <a href={localizedPath(code as Lang, currentPath)} class={`tab ${lang === code ? "active" : ""}`}>{languages[code as Lang]}</a>
+        ))}
+      </span>
+    </nav>
+    <main>
+      <p class="index-label">{t.sheetWord} {sheetNumber}/04 — {sheetLabel}</p>
+      <slot />
+    </main>
+    <div class="stamp">
+      <div class="row"><div class="label">{stamp.name}</div><div class="value">Sebastiano Scarcelli</div></div>
+      <div class="row"><div class="label">{stamp.contact}</div><div class="value">info@sebastianoscarcelli.it</div></div>
+      <div class="row"><div class="label">{stamp.rev}</div><div class="value">2026</div></div>
+    </div>
+  </div>
+</body>
+</html>

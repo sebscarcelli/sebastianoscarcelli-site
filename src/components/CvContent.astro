@@ -1,0 +1,26 @@
+---
+import BlueprintLayout from "../layouts/BlueprintLayout.astro";
+import { useTranslations } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<BlueprintLayout title={t.cv.title} sheetNumber="02" sheetLabel={t.cv.sheetLabel} lang={lang}>
+  <h1>{t.cv.title}</h1>
+
+  <h2>{t.cv.expTitle}</h2>
+  <p><strong>{t.cv.role}</strong> {t.cv.roleDate}</p>
+  <ul>
+    {t.cv.expItems.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <h2>{t.cv.skillsTitle}</h2>
+  <ul>
+    {t.cv.skillsItems.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <h2>{t.cv.eduTitle}</h2>
+  <p>{t.cv.eduItem}</p>
+</BlueprintLayout>
